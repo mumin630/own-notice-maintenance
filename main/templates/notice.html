@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>お知らせメンテナンスページ</title>
+  </head>
+  <body>
+    <h1>お知らせのメンテナンスページです</h1>
+    <p>データの各操作はまだ未実装です</p>
+    <table border="solid">
+      <thead>
+        <tr>
+          <th colspan="2">操作</th>
+          <th>日付</th>
+          <th>曜日</th>
+          <th>時間</th>
+          <th>メッセージ</th>
+          <th>お知らせ対象</th>
+          <th>お知らせ場所</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for notice in notice_list %}
+        <tr>
+          <td>
+            <form>
+              <input type="button" value="変更">
+            </form>
+          </td>
+          <td>
+            <form>
+              <input type="button" value="削除">
+            </form>
+          </td>
+          <td>{{notice.date}}</td>
+          <td>{{notice.week}}</td>
+          <td>{{notice.time}}</td>
+          <td>{{notice.message}}</td>
+          <td>{{notice.sendtarget}}</td>
+          <td>{{notice.sendchannel}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>testページ</title>
+  </head>
+  <body>
+    <h1>テストページです</h1>
+    <form action="{{ url_for('add_test') }}" method=post>
+      <input type="text" name="title">
+      <input type="text" name="text">
+      <input type="submit">
+    </form>
+    <ul class="test_list">
+      {% for test in test_list %}
+        <li>{{test.title}} / {{test.text}}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
