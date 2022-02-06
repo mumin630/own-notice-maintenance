@@ -7,27 +7,19 @@ class Notice(db.Model):
     week = db.Column(db.String(3))
     time = db.Column(db.DateTime)
     message = db.Column(db.Text)
-    sendtarget = db.Column(db.String(50))
-    sendchannel = db.Column(db.String(50))
+    sendtarget_logical = db.Column(db.String(50))
+    sendchannel_logical = db.Column(db.String(50))
 
-    def __repr__(self):
+    # データを整形する
+    def trim_data(notice_list):
 
-        format = "<Notice "
-        format += "message_id={} "
-        format += "date={} "
-        format += "week={} "
-        format += "time={} "
-        format += "message={} "
-        format += "send_target={} "
-        format += "send_channel={} "
-        format += ">"
+        for index, notice in enumerate(notice_list):
 
-        return format.format(
-            self.messageid,
-            self.date,
-            self.week,
-            self.time,
-            self.message,
-            self.sendtarget,
-            self.sendchannel
-        )
+            # 日付データの整形
+            if (notice.date is None):
+                notice_list[index].date = "-"
+
+            # 時間データの整形
+            notice_list[index].time = notice.time.strftime('%H:%M')
+
+        return notice_list

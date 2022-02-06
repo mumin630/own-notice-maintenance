@@ -6,7 +6,16 @@
   <body>
     <h1>お知らせのメンテナンスページです</h1>
     <p>データの各操作はまだ未実装です</p>
-    <table border="solid">
+    <table>
+      <tbody>
+        <tr>
+          <td><a href="/notice/add">新規追加</a></td>
+          <td><a href="/">前のページに戻る</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <table id="notice_list" border="solid">
       <thead>
         <tr>
           <th colspan="2">操作</th>
@@ -20,11 +29,11 @@
       </thead>
       <tbody>
         {% for notice in notice_list %}
-        <tr>
+        <tr id="notice_{{notice.messageid}}">
           <td>
-            <form>
-              <input type="button" value="変更">
-            </form>
+            <a href="/notice/update?id={{notice.messageid}}">
+              <button type="button">更新</button>
+          </a>
           </td>
           <td>
             <form>
@@ -35,8 +44,8 @@
           <td>{{notice.week}}</td>
           <td>{{notice.time}}</td>
           <td>{{notice.message}}</td>
-          <td>{{notice.sendtarget}}</td>
-          <td>{{notice.sendchannel}}</td>
+          <td>{{notice.sendtarget_logical}}</td>
+          <td>{{notice.sendchannel_logical}}</td>
         </tr>
         {% endfor %}
       </tbody>
